@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CodeBlock } from "@/components/code-block";
 import { Lock, ArrowLeft, Check } from "lucide-react";
 import Link from "next/link";
-import { createClient } from "@/utils/supabase/server";
+
 import { ComponentPreviewWrapper } from "@/components/component-preview-wrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
