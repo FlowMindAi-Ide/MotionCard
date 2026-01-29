@@ -11,9 +11,13 @@ export function Hero() {
     const [stars, setStars] = useState<number | null>(null);
 
     useEffect(() => {
-        fetch("https://api.github.com/repos/FlowMindAi-Ide/MotionCard")
+        fetch("https://api.github.com/repos/FlowMindAi-Ide/MotionCard", { cache: "no-store" })
             .then((res) => res.json())
-            .then((data) => setStars(data.stargazers_count))
+            .then((data) => {
+                if (data && typeof data.stargazers_count === "number") {
+                    setStars(data.stargazers_count);
+                }
+            })
             .catch((e) => console.error("Error fetching stars:", e));
     }, []);
 
@@ -73,7 +77,7 @@ export function Hero() {
                                 <div className="ml-2 flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full border border-zinc-200 dark:border-zinc-700">
                                     <Star className="h-3 w-3 text-yellow-500 fill-yellow-500 group-hover:scale-110 transition-transform" />
                                     <span className="text-xs font-medium">
-                                        {stars ? new Intl.NumberFormat('en-US', { notation: "compact", compactDisplay: "short" }).format(stars) : "..."}
+                                        {stars !== null ? new Intl.NumberFormat('en-US', { notation: "compact", compactDisplay: "short" }).format(stars) : "..."}
                                     </span>
                                 </div>
                             </Button>
