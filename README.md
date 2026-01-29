@@ -1,12 +1,24 @@
-# MotionCard
+<h1 align="left">
+  <a href="https://motioncard.flowmindai.in" style="text-decoration: none;">
+    <img src="https://i.ibb.co/mrscRs1W/Motion-Card-Logov2.png" alt="Motion-Card-Logov2" width="60" style="vertical-align: middle;">
+    <span style="vertical-align: middle; margin-left: 8px;">MotionCard</span>
+  </a>
+</h1>
 
-A premium, open-source collection of high-quality, motion-driven React components. Built with **Next.js**, **Framer Motion**, and **Tailwind CSS**.
+A comprehensive collection of beautiful, animated React components aiming to enhance user experience. Built with **Next.js**, **Framer Motion**, and **Tailwind CSS**.
 
-🚀 **[Checkout My Live Website](https://motioncard.flowmindai.in)**
+<p align="left">
+<a href="https://motioncard.flowmindai.in"><img src="https://i.ibb.co/tP3JZZC7/Screenshot-2026-01-29-175037.png" alt="Screenshot-2026-01-29-175037" width="30%" height="30%"></a>
+</p>
 
-![MotionCard Banner](https://ibb.co/M59C88NY)
+<p align="left">
+  <a href="https://motioncard.flowmindai.in" style="text-decoration: none;">
+    <img src="https://i.ibb.co/mrscRs1W/Motion-Card-Logov2.png" alt="Motion-Card-Logov2" width="40" style="vertical-align: middle;">
+    <span style="vertical-align: middle; font-weight: bold; margin-left: 8px;">Checkout My Live Website</span>
+  </a>
+</p>
 
-## ✨ Features
+## Features
 
 - 🎨 **Beautiful Animations** - Smooth, performant animations powered by Framer Motion
 - 📦 **Copy & Paste Ready** - Each component is self-contained and easy to integrate
@@ -15,7 +27,7 @@ A premium, open-source collection of high-quality, motion-driven React component
 - 🎛️ **Interactive Controls** - Live customization with real-time preview
 - 🔧 **TypeScript First** - Full type safety and IntelliSense support
 
-## 🚀 Components
+## Components
 
 ### Text Effects
 - **Glitch Text** - Cyberpunk-style glitch animation
@@ -128,4 +140,10 @@ If you find this project helpful, please consider:
 
 ---
 
+Join our [Discord Server](https://discord.gg/eC7BF9VEJn) for support and discussions.
+
 Built with ❤️ by [FlowMindAi-Ide](https://github.com/FlowMindAi-Ide)
+
+FYI, I am a solo developer, so please be patient with me. And also there is a big project I am working on watch out for `flowmindai.in` domain for more updates, so please support me by starring the repository.
+
+---
