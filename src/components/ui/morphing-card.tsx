@@ -12,9 +12,9 @@ export function MorphingCard() {
             <motion.div
                 layout
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-zinc-900 border border-zinc-800 rounded-2xl cursor-pointer overflow-hidden relative shadow-xl"
+                className="bg-zinc-900 border border-zinc-800 rounded-2xl cursor-pointer overflow-hidden relative shadow-xl max-w-full"
                 style={{
-                    width: isOpen ? 400 : 80,
+                    width: isOpen ? "min(400px, calc(100vw - 80px))" : 80,
                     height: isOpen ? 300 : 80,
                     borderRadius: 24,
                 }}

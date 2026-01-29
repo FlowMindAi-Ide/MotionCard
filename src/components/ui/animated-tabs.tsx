@@ -16,7 +16,7 @@ export function AnimatedTabs() {
     const [activeTab, setActiveTab] = useState(tabs[0].id);
 
     return (
-        <div className="flex space-x-1 rounded-full border bg-background/50 p-1 backdrop-blur-sm">
+        <div className="flex space-x-1 rounded-full border bg-background/50 p-1 backdrop-blur-sm overflow-x-auto max-w-full">
             {tabs.map((tab) => (
                 <button
                     key={tab.id}

@@ -10,9 +10,9 @@ export default function ComponentsLayout({
     return (
         <div className="flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-950">
             <Navbar />
-            <div className="container flex-1 md:grid md:grid-cols-[260px_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)] md:gap-6 lg:gap-10 items-stretch">
+            <div className="container flex-1 md:grid md:grid-cols-[260px_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)] md:gap-6 lg:gap-10 items-stretch px-4 md:px-6">
                 <ComponentSidebar />
-                <main className="relative py-6 lg:gap-10 lg:py-8 pt-24 md:pt-10">
+                <main className="relative py-6 lg:gap-10 lg:py-8 pt-8 md:pt-10 pl-14 md:pl-0">
                     {children}
                 </main>
             </div>

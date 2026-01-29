@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { components } from "@/config/components";
-import { Badge } from "@/components/ui/badge";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function ComponentSidebar() {
     const pathname = usePathname();
+    const [isOpen, setIsOpen] = useState(false);
 
     // Group components by category
     const groupedComponents = {
@@ -19,10 +22,6 @@ export function ComponentSidebar() {
         "Sections": components.filter(c => c.title.includes("Section") || c.title.includes("Grid") || c.title.includes("Layout") || c.slug.includes("lamp") || c.slug.includes("bento")),
     };
 
-    // Helper to check if a component is already categorized to avoid duplicates (simplified logic for now)
-    // Actually, let's just explicit map or ensure we don't duplicate.
-    // For this quick implementation, I'll iterate categories.
-
     const categories = [
         { name: "Text Animations", items: groupedComponents.Text },
         { name: "Cards & Containers", items: groupedComponents.Cards },
@@ -32,39 +31,96 @@ export function ComponentSidebar() {
         { name: "Sections & Layout", items: groupedComponents.Sections },
     ];
 
-    return (
-        <aside className="fixed top-20 left-0 z-30 hidden w-full shrink-0 md:sticky md:block md:w-64 lg:w-72 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 h-[calc(100vh-80px)] top-20 self-start">
-            <div className="h-full overflow-y-auto py-6 px-4 pb-20">
-                {
-                    categories.map((category) => (
-                        <div key={category.name} className="mb-8">
-                            <h2 className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                                {category.name}
-                            </h2>
-                            <div className="space-y-1">
-                                {category.items.map((component) => (
-                                    <Link
-                                        key={component.id}
-                                        href={`/components/${component.slug}`}
-                                        className={cn(
-                                            "group flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900",
-                                            pathname === `/components/${component.slug}`
-                                                ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
-                                                : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                                        )}
-                                    >
-                                        <span>{component.title}</span>
-
-                                    </Link>
-                                ))}
-                                {category.items.length === 0 && (
-                                    <div className="px-3 py-2 text-sm text-muted-foreground italic">No items</div>
+    const SidebarContent = ({ onItemClick }: { onItemClick?: () => void }) => (
+        <div className="h-full overflow-y-auto py-6 px-4 pb-20">
+            {categories.map((category) => (
+                <div key={category.name} className="mb-8">
+                    <h2 className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        {category.name}
+                    </h2>
+                    <div className="space-y-1">
+                        {category.items.map((component) => (
+                            <Link
+                                key={component.id}
+                                href={`/components/${component.slug}`}
+                                onClick={onItemClick}
+                                className={cn(
+                                    "group flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900",
+                                    pathname === `/components/${component.slug}`
+                                        ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
+                                        : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
                                 )}
-                            </div>
-                        </div>
-                    ))
-                }
+                            >
+                                <span>{component.title}</span>
+                            </Link>
+                        ))}
+                        {category.items.length === 0 && (
+                            <div className="px-3 py-2 text-sm text-muted-foreground italic">No items</div>
+                        )}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+
+    return (
+        <>
+            {/* Mobile Menu Button - Fixed at top */}
+            <div className="fixed top-20 left-4 z-50 md:hidden">
+                <button
+                    onClick={() => setIsOpen(true)}
+                    className="flex items-center justify-center h-10 w-10 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                    aria-label="Open menu"
+                >
+                    <Menu className="h-5 w-5" />
+                </button>
             </div>
-        </aside>
+
+            {/* Mobile Drawer */}
+            <AnimatePresence>
+                {isOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden"
+                            onClick={() => setIsOpen(false)}
+                        />
+
+                        {/* Drawer */}
+                        <motion.aside
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="fixed top-0 left-0 z-50 h-full w-72 bg-white dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 shadow-2xl md:hidden"
+                        >
+                            {/* Drawer Header */}
+                            <div className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-800">
+                                <span className="font-semibold text-sm">Components</span>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex items-center justify-center h-8 w-8 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                                    aria-label="Close menu"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </div>
+
+                            {/* Drawer Content */}
+                            <SidebarContent onItemClick={() => setIsOpen(false)} />
+                        </motion.aside>
+                    </>
+                )}
+            </AnimatePresence>
+
+            {/* Desktop Sidebar - Unchanged */}
+            <aside className="fixed top-20 left-0 z-30 hidden w-full shrink-0 md:sticky md:block md:w-64 lg:w-72 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 h-[calc(100vh-80px)] top-20 self-start">
+                <SidebarContent />
+            </aside>
+        </>
     );
 }

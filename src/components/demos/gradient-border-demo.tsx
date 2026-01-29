@@ -3,7 +3,7 @@ import { GradientBorder } from "@/components/ui/gradient-border";
 
 export function GradientBorderDemo(props: any) {
     return (
-        <div className="flex justify-center p-10">
+        <div className="flex justify-center p-4 sm:p-10">
             <GradientBorder className="bg-zinc-950" {...props}>
                 <div className="max-w-xs text-center p-8">
                     <h3 className="text-xl font-bold text-white mb-4">Legendary</h3>

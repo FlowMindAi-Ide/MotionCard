@@ -41,7 +41,7 @@ export default async function ComponentPage({ params }: PageProps) {
                     />
                 </div>
 
-                {/* Right Sidebar (Details) */}
+                {/* Right Sidebar (Details) - Desktop Only */}
                 <div className="space-y-6 xl:sticky xl:top-24 hidden xl:block">
                     <div className="border rounded-xl p-6 bg-card shadow-sm">
                         <h3 className="font-semibold mb-4">Component Details</h3>
@@ -89,6 +89,41 @@ export default async function ComponentPage({ params }: PageProps) {
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Component Details - Mobile Only (Below Preview) */}
+            <div className="xl:hidden mt-8">
+                <div className="border rounded-xl p-6 bg-card shadow-sm">
+                    <h3 className="font-semibold mb-4">Component Details</h3>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="py-2">
+                            <span className="text-muted-foreground block text-xs">Framework</span>
+                            <span className="font-medium">React / Next.js</span>
+                        </div>
+                        <div className="py-2">
+                            <span className="text-muted-foreground block text-xs">Styling</span>
+                            <span className="font-medium">Tailwind CSS</span>
+                        </div>
+                        <div className="py-2">
+                            <span className="text-muted-foreground block text-xs">Animation</span>
+                            <span className="font-medium">Framer Motion</span>
+                        </div>
+                        <div className="py-2">
+                            <span className="text-muted-foreground block text-xs">Dependencies</span>
+                            {component.dependencies && component.dependencies.length > 0 ? (
+                                <div className="flex flex-wrap gap-1 mt-1">
+                                    {component.dependencies.map((dep) => (
+                                        <span key={dep} className="text-xs font-mono bg-muted px-2 py-0.5 rounded">
+                                            {dep}
+                                        </span>
+                                    ))}
+                                </div>
+                            ) : (
+                                <span className="text-xs text-muted-foreground">None</span>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -31,6 +31,8 @@ export function GlowButton({ children, text, className, onClick, glowColor = "#6
             onClick={onClick}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
+            onTouchStart={() => setIsHovering(true)}
+            onTouchEnd={() => setIsHovering(false)}
             onMouseMove={handleMouseMove}
             whileTap={{ scale: 0.95 }}
             className={cn(
@@ -38,20 +40,21 @@ export function GlowButton({ children, text, className, onClick, glowColor = "#6
                 className
             )}
         >
-            {/* Cursor glow effect */}
-            {isHovering && (
-                <div
-                    className="absolute pointer-events-none"
-                    style={{
-                        left: mousePosition.x,
-                        top: mousePosition.y,
-                        width: '200px',
-                        height: '200px',
-                        background: `radial-gradient(circle, ${glowColor} 0%, rgba(99,102,241,0) 70%)`,
-                        transform: 'translate(-50%, -50%)',
-                    }}
-                />
-            )}
+            {/* Cursor glow effect - visible on hover or on mobile (always at center) */}
+            <div
+                className={cn(
+                    "absolute pointer-events-none transition-opacity duration-300",
+                    isHovering ? "opacity-100" : "opacity-30 sm:opacity-0"
+                )}
+                style={{
+                    left: isHovering ? mousePosition.x : "50%",
+                    top: isHovering ? mousePosition.y : "50%",
+                    width: '200px',
+                    height: '200px',
+                    background: `radial-gradient(circle, ${glowColor} 0%, rgba(99,102,241,0) 70%)`,
+                    transform: 'translate(-50%, -50%)',
+                }}
+            />
 
             <span className="relative z-10" style={{ color: isHovering ? hoverColor : '' }}>{children || text || "Hover Me"}</span>
         </motion.button>

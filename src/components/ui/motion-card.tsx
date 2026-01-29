@@ -6,6 +6,7 @@ export function MotionCard() {
     return (
         <motion.div
             whileHover={{ y: -5 }}
+            whileTap={{ y: -5 }}
             className="p-6 rounded-xl bg-card border shadow-sm hover:shadow-md transition-shadow max-w-xs"
         >
             <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 mb-4">

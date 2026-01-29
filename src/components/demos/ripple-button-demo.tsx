@@ -3,7 +3,7 @@ import { RippleButton } from "@/components/ui/ripple-button";
 
 export function RippleButtonDemo(props: any) {
     return (
-        <div className="flex justify-center items-center p-16">
+        <div className="flex justify-center items-center p-8 sm:p-16">
             <RippleButton {...props}>
                 {props.text || props.children || "Click Me"}
             </RippleButton>

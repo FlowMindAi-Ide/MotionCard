@@ -11,8 +11,19 @@ export function SpotlightCard({
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-        const { left, top } = currentTarget.getBoundingClientRect();
+    function handleMouseMove(e: MouseEvent | React.TouchEvent) {
+        let clientX, clientY;
+
+        if ('touches' in e) {
+            const touch = e.touches[0];
+            clientX = touch.clientX;
+            clientY = touch.clientY;
+        } else {
+            clientX = (e as MouseEvent).clientX;
+            clientY = (e as MouseEvent).clientY;
+        }
+
+        const { left, top } = e.currentTarget.getBoundingClientRect();
 
         mouseX.set(clientX - left);
         mouseY.set(clientY - top);
@@ -22,6 +33,7 @@ export function SpotlightCard({
         <div
             className="group relative max-w-md rounded-xl border border-zinc-800 bg-zinc-900 px-8 py-16 shadow-2xl"
             onMouseMove={handleMouseMove}
+            onTouchMove={handleMouseMove}
         >
             <motion.div
                 className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"

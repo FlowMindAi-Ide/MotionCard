@@ -27,16 +27,24 @@ export function PerspectiveCard({
     const rotateX = useMotionTemplate`calc(${mouseYSpring} * -0.5deg)`;
     const rotateY = useMotionTemplate`calc(${mouseXSpring} * 0.5deg)`;
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.TouchEvent<HTMLDivElement>) => {
         if (!ref.current) return;
 
         const rect = ref.current.getBoundingClientRect();
-
         const width = rect.width;
         const height = rect.height;
 
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+        let clientX, clientY;
+        if ('touches' in e) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+
+        const mouseX = clientX - rect.left;
+        const mouseY = clientY - rect.top;
 
         const xPct = mouseX / width - 0.5;
         const yPct = mouseY / height - 0.5;
@@ -55,6 +63,8 @@ export function PerspectiveCard({
             ref={ref}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onTouchMove={handleMouseMove}
+            onTouchEnd={handleMouseLeave}
             style={{
                 transformStyle: "preserve-3d",
                 rotateX,

@@ -76,7 +76,7 @@ export function ComponentPreviewWrapper({ slug, files, title }: ComponentPreview
                     <div className="border-b px-4 py-3 bg-muted/30">
                         <span className="text-sm font-medium text-muted-foreground">Preview</span>
                     </div>
-                    <div className="flex items-center justify-center min-h-[400px] p-10 bg-secondary/10 relative">
+                    <div className="flex items-center justify-center min-h-[250px] sm:min-h-[400px] p-4 sm:p-10 bg-secondary/10 relative overflow-hidden">
                         <div className="w-full flex items-center justify-center">
                             <ComponentPreview slug={slug} className="scale-100" controlValues={controlValues} />
                         </div>
@@ -101,10 +101,10 @@ export function ComponentPreviewWrapper({ slug, files, title }: ComponentPreview
                 <h2 className="text-2xl font-bold tracking-tight">Installation & Usage</h2>
 
                 <Tabs defaultValue={files[0]?.name} className="w-full">
-                    <div className="flex items-center justify-between mb-4">
-                        <TabsList>
+                    <div className="flex items-center justify-between mb-4 overflow-x-auto">
+                        <TabsList className="inline-flex w-auto min-w-0">
                             {files.map((file) => (
-                                <TabsTrigger key={file.name} value={file.name}>
+                                <TabsTrigger key={file.name} value={file.name} className="whitespace-nowrap">
                                     {file.name}
                                 </TabsTrigger>
                             ))}

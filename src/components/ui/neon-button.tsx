@@ -44,19 +44,33 @@ export function NeonButton({
 
     const theme = colors[color];
 
+    // Get glow values for animations
+    const glowValues = {
+        cyan: {
+            default: "0 0 20px rgba(34,211,238,0.3), inset 0 0 20px rgba(34,211,238,0.1)",
+            active: "0 0 30px rgba(34,211,238,0.6), 0 0 60px rgba(34,211,238,0.3), inset 0 0 20px rgba(34,211,238,0.2)"
+        },
+        pink: {
+            default: "0 0 20px rgba(244,114,182,0.3), inset 0 0 20px rgba(244,114,182,0.1)",
+            active: "0 0 30px rgba(244,114,182,0.6), 0 0 60px rgba(244,114,182,0.3), inset 0 0 20px rgba(244,114,182,0.2)"
+        },
+        purple: {
+            default: "0 0 20px rgba(192,132,252,0.3), inset 0 0 20px rgba(192,132,252,0.1)",
+            active: "0 0 30px rgba(192,132,252,0.6), 0 0 60px rgba(192,132,252,0.3), inset 0 0 20px rgba(192,132,252,0.2)"
+        }
+    };
+
     return (
         <motion.button
             onClick={onClick}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.02, boxShadow: glowValues[color].active }}
+            whileTap={{ scale: 0.98, boxShadow: glowValues[color].active }}
+            initial={{ boxShadow: glowValues[color].default }}
             className={cn(
                 "relative px-8 py-3 rounded-lg border-2 font-semibold uppercase tracking-widest text-sm transition-all duration-500 backdrop-blur-sm",
                 theme.bg,
                 theme.border,
                 theme.text,
-                theme.glow,
-                theme.hoverGlow,
-                "hover:brightness-125",
                 className
             )}
         >
