@@ -5,7 +5,8 @@ import { useState, MouseEvent } from "react";
 import { cn } from "@/lib/utils";
 
 interface RippleButtonProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
+    text?: string;
     className?: string;
     onClick?: () => void;
     rippleColor?: string;
@@ -20,6 +21,7 @@ interface Ripple {
 
 export function RippleButton({
     children,
+    text,
     className,
     onClick,
     rippleColor = "rgba(255, 255, 255, 0.5)",
@@ -87,7 +89,7 @@ export function RippleButton({
                     }}
                 />
             ))}
-            <span className="relative z-10">{children}</span>
+            <span className="relative z-10">{children || text || "Click Me"}</span>
         </button>
     );
 }

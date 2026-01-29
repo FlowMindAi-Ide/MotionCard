@@ -52,14 +52,14 @@ export function TextReveal({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className={className}
+            key={text}
         >
             {words.map((word, index) => (
                 <motion.span
                     variants={child}
                     style={{ marginRight: "5px" }}
                     key={index}
-                    className="text-2xl font-bold text-foreground"
+                    className={className || "text-2xl font-bold text-foreground"}
                 >
                     {word}
                 </motion.span>

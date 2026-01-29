@@ -27,12 +27,12 @@ export const componentControls: Record<string, Control[]> = {
     ],
     'text-shimmer': [
         { type: 'text', label: 'Text', defaultValue: 'Loading premium experience...', prop: 'children' },
-        { type: 'text', label: 'Class Name', defaultValue: 'font-mono text-xl', prop: 'className' },
+        { type: 'select', label: 'Class Name', defaultValue: 'text-4xl font-bold py-2', options: ['text-4xl font-bold py-2', 'text-2xl font-bold py-2', 'text-xl font-bold py-2', 'text-lg font-bold py-2', 'text-md font-bold py-2', 'text-sm font-bold py-2', 'text-xs font-bold py-2'], prop: 'className' },
         { type: 'number', label: 'Duration (s)', defaultValue: 3, min: 1, max: 10, step: 0.1, prop: 'duration' },
     ],
     'text-reveal': [
         { type: 'text', label: 'Text', defaultValue: 'Motion driven experiences that delight your users.', prop: 'text' },
-        { type: 'text', label: 'Class Name', defaultValue: '', prop: 'className' },
+        { type: 'select', label: 'Class Name', defaultValue: 'text-2xl font-bold text-foreground', options: ['text-2xl font-bold text-foreground', 'text-xl font-bold text-foreground', 'text-lg font-bold text-foreground', 'text-md font-bold text-foreground', 'text-sm font-bold text-foreground', 'text-xs font-bold text-foreground'], prop: 'className' },
         { type: 'number', label: 'Duration (s)', defaultValue: 0.5, min: 0.1, max: 2, step: 0.1, prop: 'duration' },
     ],
     'spotlight-card': [
@@ -48,7 +48,7 @@ export const componentControls: Record<string, Control[]> = {
     ],
     'ripple-button': [
         { type: 'text', label: 'Button Text', defaultValue: 'Click Me', prop: 'text' },
-        { type: 'color', label: 'Ripple Color', defaultValue: 'rgba(255, 255, 255, 0.5)', prop: 'rippleColor' },
+        { type: 'color', label: 'Ripple Color', defaultValue: '#ff0000', prop: 'rippleColor' },
         { type: 'text', label: 'Duration (e.g. 0.6s)', defaultValue: '0.6s', prop: 'duration' },
     ],
     'neon-button': [

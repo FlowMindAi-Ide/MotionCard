@@ -1,9 +1,19 @@
-<h1 align="left">
-  <a href="https://motioncard.flowmindai.in" style="text-decoration: none;">
-    <img src="https://i.ibb.co/mrscRs1W/Motion-Card-Logov2.png" alt="Motion-Card-Logov2" width="60" style="vertical-align: middle;">
-    <span style="vertical-align: middle; margin-left: 8px;">MotionCard</span>
-  </a>
-</h1>
+<table align="left">
+  <tr>
+    <td>
+      <a href="https://motioncard.flowmindai.in">
+        <img src="https://i.ibb.co/mrscRs1W/Motion-Card-Logov2.png" alt="Motion-Card-Logov2" width="60">
+      </a>
+    </td>
+    <td style="vertical-align: middle;">
+      <a href="https://motioncard.flowmindai.in" style="text-decoration: none;">
+        <h1 style="margin: 0;">MotionCard</h1>
+      </a>
+    </td>
+  </tr>
+</table>
+<br clear="left"/>
+<br/>
 
 A comprehensive collection of beautiful, animated React components aiming to enhance user experience. Built with **Next.js**, **Framer Motion**, and **Tailwind CSS**.
 
@@ -11,12 +21,22 @@ A comprehensive collection of beautiful, animated React components aiming to enh
 <a href="https://motioncard.flowmindai.in"><img src="https://i.ibb.co/tP3JZZC7/Screenshot-2026-01-29-175037.png" alt="Screenshot-2026-01-29-175037" width="30%" height="30%"></a>
 </p>
 
-<p align="left">
-  <a href="https://motioncard.flowmindai.in" style="text-decoration: none;">
-    <img src="https://i.ibb.co/mrscRs1W/Motion-Card-Logov2.png" alt="Motion-Card-Logov2" width="40" style="vertical-align: middle;">
-    <span style="vertical-align: middle; font-weight: bold; margin-left: 8px;">Checkout My Live Website</span>
-  </a>
-</p>
+<table align="left">
+  <tr>
+    <td>
+      <a href="https://motioncard.flowmindai.in">
+        <img src="https://i.ibb.co/mrscRs1W/Motion-Card-Logov2.png" alt="Motion-Card-Logov2" width="40">
+      </a>
+    </td>
+    <td style="vertical-align: middle;">
+      <a href="https://motioncard.flowmindai.in" style="text-decoration: none;">
+        <strong style="font-size: 1.1em;">Checkout My Live Website</strong>
+      </a>
+    </td>
+  </tr>
+</table>
+<br clear="left"/>
+<br/>
 
 ## Features
 

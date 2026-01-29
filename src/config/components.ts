@@ -235,7 +235,11 @@ export function SpotlightCard() {
 
 export function TextRevealDemo() {
   return (
-    <TextReveal text="Motion driven experiences that delight your users." duration={0.5} />
+    <TextReveal 
+      text="Motion driven experiences that delight your users." 
+      className="text-2xl font-bold text-foreground"
+      duration={0.5} 
+    />
   )
 }`
       },
@@ -247,11 +251,13 @@ import { motion } from "framer-motion";
 interface TextRevealProps {
     text?: string;
     className?: string;
+    duration?: number;
 }
 
 export function TextReveal({
     text = "Motion driven experiences that delight your users.",
-    className
+    className,
+    duration = 0.5,
 }: TextRevealProps) {
     const words = text.split(" ");
 
@@ -259,7 +265,7 @@ export function TextReveal({
         hidden: { opacity: 0 },
         visible: (i = 1) => ({
             opacity: 1,
-            transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+            transition: { staggerChildren: duration * 0.24, delayChildren: 0.04 * i },
         }),
     };
 
@@ -293,14 +299,14 @@ export function TextReveal({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className={className}
+            key={text}
         >
             {words.map((word, index) => (
                 <motion.span
                     variants={child}
                     style={{ marginRight: "5px" }}
                     key={index}
-                    className="text-2xl font-bold text-foreground"
+                    className={className || "text-2xl font-bold text-foreground"}
                 >
                     {word}
                 </motion.span>
@@ -392,7 +398,11 @@ export function AnimatedTabs() {
 export function GlitchTextDemo() {
   return (
     <div className="flex justify-center p-10">
-      <GlitchText text="CYBERPUNK" className="text-5xl font-bold" />
+      <GlitchText 
+        text="CYBERPUNK" 
+        className="text-4xl font-bold" 
+        mode="light" 
+      />
     </div>
   )
 }`
@@ -415,6 +425,10 @@ const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?";
 export function GlitchText({ text = "GLITCH", className, mode = "dark" }: GlitchTextProps) {
     const [displayText, setDisplayText] = useState(text);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        setDisplayText(text);
+    }, [text]);
 
     const scramble = () => {
         let iteration = 0;
@@ -529,7 +543,13 @@ import { Sparkles } from "lucide-react";
 export function GradientBorderDemo() {
   return (
     <div className="flex justify-center p-10">
-      <GradientBorder gradient="from-red-500 to-yellow-500" borderWidth="4" duration="3" borderRadius="24" className="bg-zinc-950">
+      <GradientBorder 
+        gradient="from-red-500 to-yellow-500" 
+        borderWidth={4} 
+        duration={3} 
+        borderRadius={24} 
+        className="bg-zinc-950"
+      >
         <div className="max-w-xs text-center p-2">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-500/10 mb-4">
                 <Sparkles className="h-6 w-6 text-indigo-400" />
@@ -641,7 +661,13 @@ export function GradientBorder({
 export function GravityTextDemo() {
   return (
     <div className="h-[300px] flex items-center justify-center">
-       <GravityText text="GRAVITY" />
+       <GravityText 
+         text="GRAVITY" 
+         className="text-4xl" 
+         font="font-bold" 
+         duration={0.5} 
+         stiffness={400} 
+       />
     </div>
   )
 }`
@@ -836,7 +862,7 @@ export function MagneticButton({
     const ref = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    const content = children || <Button variant="premium">Magnetic</Button>;
+    const content = children || text || <Button variant="premium">Magnetic</Button>;
 
     const handleMouse = (e: React.MouseEvent) => {
         const { clientX, clientY } = e;
@@ -883,9 +909,11 @@ export function MagneticButton({
 export function TextShimmerDemo() {
   return (
     <div className="flex justify-center p-10">
-      <TextShimmer duration={3} className="font-mono text-xl">
-        Loading premium experience...
-      </TextShimmer>
+      <TextShimmer 
+        text="Loading premium experience..." 
+        className="text-4xl font-bold py-2" 
+        duration={3} 
+      />
     </div>
   )
 }`
@@ -1184,9 +1212,11 @@ function IconContainer({ mouseX, children }: { mouseX: MotionValue; children: Re
 
 export function RippleButtonDemo() {
   return (
-    <RippleButton>
-      Click Me
-    </RippleButton>
+    <RippleButton 
+      text="Click Me" 
+      rippleColor="rgba(255, 255, 255, 0.5)" 
+      duration="0.6s" 
+    />
   )
 }`
       },
@@ -1291,10 +1321,11 @@ export function RippleButton({ children, className, onClick }: RippleButtonProps
 
 export function NeonButtonDemo() {
   return (
-    <div className="flex gap-6 bg-black p-16">
-      <NeonButton color="cyan">Neon Cyan</NeonButton>
-      <NeonButton color="pink">Neon Pink</NeonButton>
-      <NeonButton color="purple">Neon Purple</NeonButton>
+    <div className="flex justify-center p-10">
+      <NeonButton 
+        text="Neon Glow" 
+        color="cyan" 
+      />
     </div>
   )
 }`
@@ -1377,9 +1408,11 @@ export function NeonButton({
 
 export function GlowButtonDemo() {
   return (
-    <GlowButton>
-      Hover for Glow
-    </GlowButton>
+    <GlowButton 
+      text="Hover for Glow" 
+      glowColor="#6366f1" 
+      hoverColor="#ffffff" 
+    />
   )
 }`
       },
@@ -1735,7 +1768,7 @@ import { motion } from "framer-motion";
 
 export function LampDemo() {
   return (
-    <LampContainer>
+    <LampContainer className="">
       <motion.h1
         initial={{ opacity: 0.5, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -1857,6 +1890,7 @@ export function InfiniteMovingCardsDemo() {
         items={[{ quote: "To be, or not to be", name: "Shakespeare", title: "Hamlet" }]}
         direction="right"
         speed="slow"
+        pauseOnHover={true}
         gap="normal"
         backgroundColor="#09090b"
         textColor="#ffffff"

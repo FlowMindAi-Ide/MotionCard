@@ -5,14 +5,15 @@ import { useState, MouseEvent } from "react";
 import { cn } from "@/lib/utils";
 
 interface GlowButtonProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
+    text?: string;
     className?: string;
     onClick?: () => void;
     glowColor?: string;
     hoverColor?: string;
 }
 
-export function GlowButton({ children, className, onClick, glowColor = "#6366f1", hoverColor = "#ffffff" }: GlowButtonProps) {
+export function GlowButton({ children, text, className, onClick, glowColor = "#6366f1", hoverColor = "#ffffff" }: GlowButtonProps) {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
 
@@ -52,7 +53,7 @@ export function GlowButton({ children, className, onClick, glowColor = "#6366f1"
                 />
             )}
 
-            <span className="relative z-10" style={{ color: isHovering ? hoverColor : '' }}>{children}</span>
+            <span className="relative z-10" style={{ color: isHovering ? hoverColor : '' }}>{children || text || "Hover Me"}</span>
         </motion.button>
     );
 }

@@ -15,6 +15,10 @@ export function GlitchText({ text = "GLITCH", className, mode = "dark" }: Glitch
     const [displayText, setDisplayText] = useState(text);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+    useEffect(() => {
+        setDisplayText(text);
+    }, [text]);
+
     const scramble = () => {
         let iteration = 0;
 

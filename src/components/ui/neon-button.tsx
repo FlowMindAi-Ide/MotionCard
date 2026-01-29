@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface NeonButtonProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
+    text?: string;
     className?: string;
     onClick?: () => void;
     color?: "cyan" | "pink" | "purple";
@@ -12,6 +13,7 @@ interface NeonButtonProps {
 
 export function NeonButton({
     children,
+    text,
     className,
     onClick,
     color = "cyan"
@@ -58,7 +60,7 @@ export function NeonButton({
                 className
             )}
         >
-            <span className="relative z-10">{children}</span>
+            <span className="relative z-10">{children || text || "Neon Glow"}</span>
         </motion.button>
     );
 }
