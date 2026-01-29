@@ -2,9 +2,9 @@
 
 A premium, open-source collection of high-quality, motion-driven React components. Built with **Next.js**, **Framer Motion**, and **Tailwind CSS**.
 
-🚀 **[Live Demo](https://motioncard.flowmindai.in)**
+🚀 **[Checkout My Live Website](https://motioncard.flowmindai.in)**
 
-![MotionCard Banner](https://via.placeholder.com/1200x400/1a1a1a/ffffff?text=MotionCard)
+![MotionCard Banner](https://ibb.co/M59C88NY)
 
 ## ✨ Features
 
