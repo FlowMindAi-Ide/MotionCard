@@ -13,6 +13,7 @@ export interface Component {
   type: ComponentType;
   files: ComponentFile[];
   dependencies?: string[]; // NPM packages required
+  previewScale?: number; // Optional scale factor for preview (0-1)
 }
 
 export const components: Component[] = [
@@ -400,25 +401,26 @@ export function GlitchTextDemo() {
         name: "components/ui/glitch-text.tsx",
         code: `"use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface GlitchTextProps {
     text: string;
     className?: string;
+    mode?: "dark" | "light";
 }
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?";
 
-export function GlitchText({ text = "GLITCH", className }: GlitchTextProps) {
+export function GlitchText({ text = "GLITCH", className, mode = "dark" }: GlitchTextProps) {
     const [displayText, setDisplayText] = useState(text);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const scramble = () => {
         let iteration = 0;
-        
+
         if (intervalRef.current) clearInterval(intervalRef.current);
-        
+
         intervalRef.current = setInterval(() => {
             setDisplayText(
                 text
@@ -436,20 +438,31 @@ export function GlitchText({ text = "GLITCH", className }: GlitchTextProps) {
                 if (intervalRef.current) clearInterval(intervalRef.current);
             }
 
-            iteration += 1/3;
+            iteration += 1 / 3;
         }, 30);
     };
 
     return (
-        <div 
+        <div
             className={cn("relative inline-block group cursor-default select-none", className)}
             onMouseEnter={scramble}
         >
-            <span className="relative z-10 block mix-blend-difference">{displayText}</span>
-            <span className="absolute top-0 left-0 -z-10 block w-full text-red-500 opacity-0 group-hover:opacity-100 group-hover:animate-glitch-1 group-hover:translate-x-[2px] mix-blend-screen">
+            <span className={cn(
+                "relative z-10 block",
+                mode === "dark" ? "mix-blend-difference" : "mix-blend-normal text-zinc-900"
+            )}>
+                {displayText}
+            </span>
+            <span className={cn(
+                "absolute top-0 left-0 -z-10 block w-full text-red-500 opacity-0 group-hover:opacity-100 group-hover:animate-glitch-1 group-hover:translate-x-[2px]",
+                mode === "dark" ? "mix-blend-screen" : "mix-blend-multiply"
+            )}>
                 {text}
             </span>
-            <span className="absolute top-0 left-0 -z-10 block w-full text-cyan-500 opacity-0 group-hover:opacity-100 group-hover:animate-glitch-2 group-hover:-translate-x-[2px] mix-blend-screen">
+            <span className={cn(
+                "absolute top-0 left-0 -z-10 block w-full text-cyan-500 opacity-0 group-hover:opacity-100 group-hover:animate-glitch-2 group-hover:-translate-x-[2px]",
+                mode === "dark" ? "mix-blend-screen" : "mix-blend-multiply"
+            )}>
                 {text}
             </span>
         </div>
@@ -1515,6 +1528,7 @@ export function BreadcrumbNav({ items, className }: BreadcrumbNavProps) {
     slug: "sidebar-nav",
     description: "Collapsible sidebar navigation with smooth transitions.",
     type: "free",
+    previewScale: 0.4,
     dependencies: ["framer-motion", "lucide-react"],
     files: [
       {
@@ -2023,6 +2037,7 @@ export const InfiniteMovingCards = ({
     slug: "login-form",
     description: "A clean, responsive login form with social auth buttons.",
     type: "free",
+    previewScale: 0.5,
     dependencies: ["lucide-react"],
     files: [
       {
@@ -2129,6 +2144,7 @@ export function LoginForm({ className }: LoginFormProps) {
     slug: "signup-form",
     description: "A comprehensive signup form with name, email, and password fields.",
     type: "free",
+    previewScale: 0.5,
     dependencies: ["lucide-react"],
     files: [
       {

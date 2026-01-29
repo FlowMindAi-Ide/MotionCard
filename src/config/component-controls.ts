@@ -17,6 +17,7 @@ export const componentControls: Record<string, Control[]> = {
     'glitch-text': [
         { type: 'text', label: 'Text', defaultValue: 'CYBERPUNK', prop: 'text' },
         { type: 'text', label: 'Class Name', defaultValue: 'text-4xl font-bold', prop: 'className' },
+        { type: 'select', label: 'Mode', defaultValue: 'light', options: ['light', 'dark'], prop: 'mode' },
     ],
     'gradient-border': [
         { type: 'select', label: 'Gradient', defaultValue: 'from-red-500 to-yellow-500', options: ['from-red-500 to-yellow-500', 'from-blue-400 to-purple-500', 'from-teal-500 to-indigo-500', 'from-green-500 to-blue-500',], prop: 'gradient' },
@@ -46,15 +47,18 @@ export const componentControls: Record<string, Control[]> = {
         { type: 'number', label: 'Stiffness', defaultValue: 400, min: 50, max: 1000, step: 10, prop: 'stiffness' },
     ],
     'ripple-button': [
-        { type: 'text', label: 'Button Text', defaultValue: 'Click Me', prop: 'children' },
-        { type: 'boolean', label: 'Disabled', defaultValue: false, prop: 'disabled' },
+        { type: 'text', label: 'Button Text', defaultValue: 'Click Me', prop: 'text' },
+        { type: 'color', label: 'Ripple Color', defaultValue: 'rgba(255, 255, 255, 0.5)', prop: 'rippleColor' },
+        { type: 'text', label: 'Duration (e.g. 0.6s)', defaultValue: '0.6s', prop: 'duration' },
     ],
     'neon-button': [
-        { type: 'text', label: 'Button Text', defaultValue: 'Neon Glow', prop: 'children' },
-        { type: 'boolean', label: 'Disabled', defaultValue: false, prop: 'disabled' },
+        { type: 'text', label: 'Button Text', defaultValue: 'Neon Glow', prop: 'text' },
+        { type: 'select', label: 'Color', defaultValue: 'cyan', options: ['cyan', 'pink', 'purple'], prop: 'color' },
     ],
     'glow-button': [
-        { type: 'text', label: 'Button Text', defaultValue: 'Hover Me', prop: 'children' },
+        { type: 'text', label: 'Button Text', defaultValue: 'Hover Me', prop: 'text' },
+        { type: 'color', label: 'Glow Color', defaultValue: '#6366f1', prop: 'glowColor' },
+        { type: 'color', label: 'Hover Text Color', defaultValue: '#ffffff', prop: 'hoverColor' },
     ],
     'bento-grid': [
         { type: 'text', label: 'Class Name', defaultValue: '', prop: 'className' },

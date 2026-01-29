@@ -8,9 +8,11 @@ interface GlowButtonProps {
     children: React.ReactNode;
     className?: string;
     onClick?: () => void;
+    glowColor?: string;
+    hoverColor?: string;
 }
 
-export function GlowButton({ children, className, onClick }: GlowButtonProps) {
+export function GlowButton({ children, className, onClick, glowColor = "#6366f1", hoverColor = "#ffffff" }: GlowButtonProps) {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
 
@@ -44,13 +46,13 @@ export function GlowButton({ children, className, onClick }: GlowButtonProps) {
                         top: mousePosition.y,
                         width: '200px',
                         height: '200px',
-                        background: 'radial-gradient(circle, rgba(99,102,241,0.4) 0%, rgba(99,102,241,0.2) 30%, transparent 70%)',
+                        background: `radial-gradient(circle, ${glowColor} 0%, rgba(99,102,241,0) 70%)`,
                         transform: 'translate(-50%, -50%)',
                     }}
                 />
             )}
 
-            <span className="relative z-10">{children}</span>
+            <span className="relative z-10" style={{ color: isHovering ? hoverColor : '' }}>{children}</span>
         </motion.button>
     );
 }

@@ -4,7 +4,7 @@ import { CardNav } from "@/components/ui/card-nav";
 
 
 const navItems = [
-    { name: "Features", link: "/#features" },
+    { name: "Showcase", link: "/showcase" },
     { name: "Components", link: "/components" },
 ];
 

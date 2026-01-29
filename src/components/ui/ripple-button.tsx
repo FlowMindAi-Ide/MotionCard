@@ -8,6 +8,8 @@ interface RippleButtonProps {
     children: React.ReactNode;
     className?: string;
     onClick?: () => void;
+    rippleColor?: string;
+    duration?: string;
 }
 
 interface Ripple {
@@ -16,7 +18,13 @@ interface Ripple {
     id: number;
 }
 
-export function RippleButton({ children, className, onClick }: RippleButtonProps) {
+export function RippleButton({
+    children,
+    className,
+    onClick,
+    rippleColor = "rgba(255, 255, 255, 0.5)",
+    duration = "0.6s"
+}: RippleButtonProps) {
     const [ripples, setRipples] = useState<Ripple[]>([]);
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -34,9 +42,10 @@ export function RippleButton({ children, className, onClick }: RippleButtonProps
         setRipples((prev) => [...prev, newRipple]);
 
         // Remove ripple after animation
+        const durationValue = parseFloat(duration) || 0.6;
         setTimeout(() => {
             setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
-        }, 600);
+        }, durationValue * 1000);
 
         onClick?.();
     };
@@ -52,10 +61,11 @@ export function RippleButton({ children, className, onClick }: RippleButtonProps
             {ripples.map((ripple) => (
                 <motion.span
                     key={ripple.id}
-                    className="absolute rounded-full bg-white/30"
+                    className="absolute rounded-full"
                     style={{
                         left: ripple.x,
                         top: ripple.y,
+                        backgroundColor: rippleColor,
                     }}
                     initial={{
                         width: 0,
@@ -72,7 +82,7 @@ export function RippleButton({ children, className, onClick }: RippleButtonProps
                         opacity: 0,
                     }}
                     transition={{
-                        duration: 0.6,
+                        duration: parseFloat(duration) || 0.6,
                         ease: "easeOut",
                     }}
                 />
